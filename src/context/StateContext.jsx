@@ -138,13 +138,16 @@ export const StateContext = ({ children }) => {
   }, []);
 
   const handleDelete = (index = 1) => {
-    // Splice the contact from the array
-    contacts.splice(index, 1);
-    // Update the contacts in local storage
-    localStorage.setItem("contacts", JSON.stringify(contacts));
-    // Update the contacts in the component's state
-    setContacts([...contacts]);
-    toast.success("Successfully Deleted!");
+    let response = confirm("Do you want to delete?");
+    if (response) {
+      // Splice the contact from the array
+      contacts.splice(index, 1);
+      // Update the contacts in local storage
+      localStorage.setItem("contacts", JSON.stringify(contacts));
+      // Update the contacts in the component's state
+      setContacts([...contacts]);
+      toast.success("Successfully Deleted!");
+    }
   };
 
   const handleEdit = (index = 1) => {
